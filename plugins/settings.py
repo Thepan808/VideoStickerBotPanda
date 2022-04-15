@@ -31,22 +31,22 @@ async def user_settings(user_id):
     default_emojis_db = data['default_emojis']
     general_text = "**{}** : {} \n{} \n\n"
     if ask_emojis_db:
-        text += general_text.format(ask_emojis, 'True', ask_emojis_msg)
+        text += general_text.format(ask_emojis, 'Verdadeiro ✓', ask_emojis_msg)
         ask_emojis += tick
     else:
-        text += general_text.format(ask_emojis, 'False', ask_emojis_msg)
+        text += general_text.format(ask_emojis, 'Falso ✕', ask_emojis_msg)
         ask_emojis += cross
     if get_webm_db:
-        text += general_text.format(get_webm, 'True', get_webm_msg)
+        text += general_text.format(get_webm, 'Verdadeiro ✓', get_webm_msg)
         get_webm += tick
     else:
-        text += general_text.format(get_webm, 'False', get_webm_msg)
+        text += general_text.format(get_webm, 'Falso ✕', get_webm_msg)
         get_webm += cross
     if kang_mode_db:
-        text += general_text.format(kang_mode, 'True', kang_mode_msg)
+        text += general_text.format(kang_mode, 'Verdadeiro ✓', kang_mode_msg)
         kang_mode += tick
     else:
-        text += general_text.format(kang_mode, 'False', kang_mode_msg)
+        text += general_text.format(kang_mode, 'Falso ✕', kang_mode_msg)
         kang_mode += cross
     if default_emojis_db:
         text += general_text.format(default_emojis, default_emojis_db, default_emojis_msg)
@@ -54,7 +54,7 @@ async def user_settings(user_id):
     else:
         text += general_text.format(default_emojis, 'Não configurado', default_emojis_msg)
         default_emojis += ' - NÃO CONFIGURADO'
-    text += 'Use os botões abaixo para alterar os valores. Um tique significa Verdadeiro e cruz significa Falso'
+    text += 'Use os botões abaixo para alterar os valores. Um ✓ significa Verdadeiro, já configurado! e um ✕ significa Falso, não configurado!'
     markup = InlineKeyboardMarkup([
         [InlineKeyboardButton(ask_emojis, callback_data="emojis")],
         [InlineKeyboardButton(default_emojis, callback_data="default_emojis")],
