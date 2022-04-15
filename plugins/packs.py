@@ -8,18 +8,18 @@ from plugins.bot_api import BotAPI
 OWNER_ID = ENV().OWNER_ID
 
 
-@Stark.cmd('packs', description="Get List of Your Packs")
+@Stark.cmd('packs', description="Obter lista de seus pacotes")
 async def packs_func(_, msg: Message):
     if msg.from_user.id not in OWNER_ID:
         user_id = msg.from_user.id
         packs = (await database.get('users', msg.from_user.id)).get("packs")
         if not packs:
-            await msg.reply('You have no packs yet. Create one by sending a Video or GIF', quote=True)
+            await msg.reply('Você ainda não tem pacotes. Crie um enviando um vídeo ou GIF', quote=True)
             return
         if packs == 1:
-            string = '**Your Pack** \n\n'
+            string = '**🧐 Seu pacote** \n\n'
         else:
-            string = '**Your Packs** \n\n'
+            string = '**🧐 Seus pacotes** \n\n'
         number = 0
         for n in range(1, packs+1):
             number += 1
@@ -30,7 +30,7 @@ async def packs_func(_, msg: Message):
         await msg.reply(string, quote=True)
         return
     users = await database.all('users')
-    string = '**Total Packs Created** : {} \n\n'
+    string = '**Total de Pacotes Criados** : {} \n\n'
     number = 0
     for x in users:
         if x['packs']:
