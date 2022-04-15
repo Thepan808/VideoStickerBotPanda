@@ -2,14 +2,6 @@
 
 START = "Olá, Jovem! ✕ Esse bot faz que: ❝ converta GIFs e vídeos em adesivos de vídeo e crie seus pacotes de adesivos específicos para você! Use /help para mais informações! E para configurar, use /settings =D ❞"
 
-STICKERS = (
-      "CAACAgEAAxkBAAEHWlFhsOrbSkS5-a-MgN-14QzIYERAkAACSAEAArnzQUQPVbNyZq-tHyME",
-      "CAACAgEAAxkBAAEHWlBhsOrbtgzlt0U7sQXdm-8g7ktpfQAC1gMAAoKBFxLbCShotLOOyiME",
-      "CAACAgUAAxkBAAEHWk9hsOrbdq1buKMKFQv_Zjyb_6L0xAAC3gMAAlN78FajRiwE9Kvf7SME",
-      "CAACAgEAAxkBAAEHWk5hsOrb_FquHJj5Az-lnqv2JnRFLAAC5wEAAhXMuUaxKoB-JuTVECME",
-      "CAACAgEAAxkBAAEHWk1hsOrbwmi1xnEr5ltH24CZEz_IqwACwgEAApo3QEQYYdArDckVOyME",
-)
-
 HELP = """
 ⛁•Posso converter GIFs e vídeos em adesivos de vídeo. Basta me enviar o adesivo e eu faço o resto para você! ⛁•
 Você receberá seu pacote assim que adicionar um adesivo. Envie mais gif/videos para adicionar adesivos no pacote atual.
