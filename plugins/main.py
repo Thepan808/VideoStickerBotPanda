@@ -7,7 +7,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 
 @Stark.cmd(private_only=True, extra_filters=filters.video | filters.animation)
 async def main(_, msg: Message):
-    status = await msg.reply("Doing what I do best...")
+    status = await msg.reply("Fazendo o que eu faço de melho, meu parceiro...")
     stark = Helpers(msg, status)
     await process(msg, stark, status)
     if os.path.exists(stark.input_file):
@@ -20,8 +20,8 @@ async def process(msg: Message, stark: Helpers, status: Message):
     await msg.download(stark.input_file)
     std = await stark.subshell()
     if os.path.exists(stark.output_file):
-        await stark.correct_the_size()  # File is too big error
-        await status.edit('Getting your pack...')
+        await stark.correct_the_size()  # O arquivo é um erro muito grande
+        await status.edit('Obtendo seu pacote...')
         success, pack_name, title = await stark.get_default_pack()
         should_ask = await database.get('users', stark.user_id, 'ask_emojis')
         if should_ask:
@@ -33,7 +33,7 @@ async def process(msg: Message, stark: Helpers, status: Message):
             if data:
                 emojis = data
             else:
-                emojis = '❤️'
+                emojis = '✨'
         params = await stark.params(pack_name, emojis, title)
         file = open(stark.output_file, 'rb')
         if success:
@@ -47,7 +47,7 @@ async def process(msg: Message, stark: Helpers, status: Message):
         sticker = await stark.get_pack(params, file)
         await status.delete()
         if sticker:
-            button = [[InlineKeyboardButton('Get WEBM File', callback_data='current_webm')]]
+            button = [[InlineKeyboardButton('Obter arquivo WEBM? •Aperta aqui• 🧐', callback_data='current_webm')]]
             await msg.reply_sticker(
                 sticker,
                 reply_to_message_id=msg.message_id,
@@ -71,10 +71,10 @@ async def existing_sticker_func(_, msg: Message):
     if msg.sticker.is_video:
         data = await database.get('users', msg.from_user.id)
         if data['kang_mode']:
-            status = await msg.reply("Doing what I do best [Kanging]... ")
+            status = await msg.reply("Fazendo o que eu faço de melhor [Kanging]... ")
             sticker_file = await msg.download(f'kangs/{msg.from_user.id}_{msg.message_id}.webm')
             stark = Helpers(msg, status)
-            await status.edit('Getting your pack...')
+            await status.edit('Obtendo seu pacote...')
             success, pack_name, title = await stark.get_default_pack()
             should_ask = await database.get('users', stark.user_id, 'ask_emojis')
             if should_ask:
@@ -86,7 +86,7 @@ async def existing_sticker_func(_, msg: Message):
                 if data:
                     emojis = data
                 else:
-                    emojis = '❤️'
+                    emojis = '✨'
             params = await stark.params(pack_name, emojis, title)
             file = open(sticker_file, 'rb')
             if success:
