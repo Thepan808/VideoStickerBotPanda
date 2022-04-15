@@ -7,7 +7,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 
 @Stark.cmd(private_only=True, extra_filters=filters.video | filters.animation)
 async def main(_, msg: Message):
-    status = await msg.reply("Fazendo o que eu faço de melho, meu parceiro...")
+    status = await msg.reply("Fazendo o que eu faço de melhor, meu parceiro... 😎🤞🏻")
     stark = Helpers(msg, status)
     await process(msg, stark, status)
     if os.path.exists(stark.input_file):
