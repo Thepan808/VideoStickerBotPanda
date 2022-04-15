@@ -21,5 +21,5 @@ class StickersTooMuch(CustomException):
 
 
 class StickerPackInvalid(CustomException):
-    """Raised if sticker pack was deleted by end user"""
+    """Gerado se o pacote de adesivos foi excluído pelo usuário final"""
     pass
