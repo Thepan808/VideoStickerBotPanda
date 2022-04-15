@@ -1,6 +1,6 @@
 # Project Settings
 
-START = "Olá, Jovem! ✕ Esse bot faz que: ❝ converta GIFs e vídeos em adesivos de vídeo e crie seus pacotes de adesivos específicos para você! =D ❞"
+START = "[﹢](https://telegra.ph/file/5e0cbaccf07c96b133aae.mp4) Olá, Jovem! ✕ Esse bot faz que: ❝ converta GIFs e vídeos em adesivos de vídeo e crie seus pacotes de adesivos específicos para você! Use /help para mais informações! E para configurar, use /settings =D ❞"
 
 HELP = """
 ⛁•Posso converter GIFs e vídeos em adesivos de vídeo. Basta me enviar o adesivo e eu faço o resto para você! ⛁•
