@@ -12,12 +12,12 @@ class BotAPI:
     new_pack_url = f"{base_url}createNewStickerSet"
     get_pack_url = f"{base_url}getStickerSet"
     add_to_pack_url = f"{base_url}addStickerToSet"
-    ERROR = "Oops, an error occurred. My owner has been notified. \n\nFor queries visit @StarkBotsChat"
+    ERROR = "Ops! Ocorreu um erro. Meu dono foi notificado. \n\nPara consultas, aguarde"
     username = requests.get(base_url + "getMe").json()["result"]["username"].title()
     PACK_NAME = "fpack_{}_by_" + username
     NEW_PACK_NAME = "fpack{}_{}_by_" + username
-    PACK_TITLE = 'Pack By @' + username
-    NEW_PACK_TITLE = 'Pack {} By @' + username
+    PACK_TITLE = 'Pack Pelo @' + username
+    NEW_PACK_TITLE = 'Pack {} Pelo @' + username
     LOG_CHAT = ENV().LOG_CHAT
 
     def __init__(self, message: Message, status: Message):
@@ -65,11 +65,11 @@ class BotAPI:
             await self.error(resp, params['name'])
         except TooManyRequests as e:
             msg = self.message
-            err = f"Error from Telegram \n\n{e.desc} \n\nFor queries visit @StarkBotsChat"
+            err = f"Erro do Telegram \n\n{e.desc} \n\nAguarde e tente novamente em 3 minutos"
             await msg.reply(err, quote=True)
             await self.client.send_message(
                 self.LOG_CHAT,
-                f"'#TooManyRequests \n\n**Info** : {resp} \n\n**User** : {msg.from_user.mention} [`{msg.from_user.id}`] \n\n**Supposed Pack** : t.me/addstickers/{e.pack}"
+                f"'#TooManyRequests \n\n**Info** : {resp} \n\n**User** : {msg.from_user.mention} [`{msg.from_user.id}`] \n\n**Suposto Pacote** : t.me/addstickers/{e.pack}"
             )
         except AlreadyOccupied:
             await self.add_to_pack(params, file)
@@ -79,7 +79,7 @@ class BotAPI:
             total_packs = await database.get('users', self.user_id, 'packs')
             if not total_packs:  # Just in Case
                 total_packs = 1
-            await self.status.edit('Oh. Your pack {} is full. Lemme create a new one for you :)'.format(total_packs))
+            await self.status.edit('Oh. Seu pacote {} está cheio. Deixe-me criar um novo para você :)'.format(total_packs))
             total_packs += 1
             pack_name = self.NEW_PACK_NAME.format(total_packs, self.user_id)
             params.update({'name': pack_name})
@@ -91,7 +91,7 @@ class BotAPI:
             await msg.reply(self.ERROR)
             err = await self.client.send_message(
                 self.LOG_CHAT,
-                f"'#ERROR \n\n**Info** : {resp} \n\n**User** : {msg.from_user.mention} [`{msg.from_user.id}`] \n\n**Supposed Pack** : t.me/addstickers/{e.pack}"
+                f"'#ERROR \n\n**Info** : {resp} \n\n**User** : {msg.from_user.mention} [`{msg.from_user.id}`] \n\n**Suposto Pacote** : t.me/addstickers/{e.pack}"
             )
             await err.reply_document(self.output_file)
             await err.reply(f"PARAMS : {params} \n\nMETHOD : {method}")
