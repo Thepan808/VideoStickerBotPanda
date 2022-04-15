@@ -29,20 +29,20 @@ async def default_emojis_cb_func(_, query: CallbackQuery):
         await query.edit_message_text(text, reply_markup=markup)
         await query.answer()
     else:
-        await query.answer('Not Found')
+        await query.answer('Não encontrado')
 
 
 @Stark.callback('change_default_emojis')
 async def change_default_emojis_cb_func(bot: Stark, query: CallbackQuery):
     user_id = query.from_user.id
     await query.answer()
-    emojis_msg = await bot.ask(user_id, 'Please send me the emojis', filters=filters.text & filters.incoming)
+    emojis_msg = await bot.ask(user_id, 'Por favor me mande os emojis', filters=filters.text & filters.incoming)
     emojis = await Helpers.extract_emojis(emojis_msg)
     if not emojis:
-        await emojis_msg.reply('No valid emojis found. Process Exited', quote=True)
+        await emojis_msg.reply('Nenhum emoji válido encontrado. Processo encerrado', quote=True)
         return
     await database.set('users', user_id, {"default_emojis": emojis})
-    await emojis_msg.reply('Emojis set successfully.', quote=True)
+    await emojis_msg.reply('Emojis definidos com sucesso.', quote=True)
     text, markup = await user_settings(user_id)
     await query.message.reply(text, reply_markup=markup)
 
@@ -52,11 +52,11 @@ async def remove_default_emojis_cb_func(_, query: CallbackQuery):
     data = await database.get('users', query.from_user.id, 'default_emojis')
     if data:
         await database.set('users', query.from_user.id, {'default_emojis': None})
-        await query.answer('Removed Successfully!', show_alert=True)
+        await query.answer('Removido com sucesso!', show_alert=True)
         text, markup = await user_settings(query.from_user.id)
         await query.edit_message_text(text, reply_markup=markup)
     else:
-        await query.answer("Default Emojis weren't set anyway", show_alert=True)
+        await query.answer("Os emojis padrão não foram definidos de qualquer maneira", show_alert=True)
 
 
 # ------------------------------------------------ #
@@ -79,11 +79,11 @@ async def change_bool(key, query):
         await database.set('users', user_id, {key: True})
     text, markup = await user_settings(user_id)
     if text == query.message.text:
-        await query.answer('An old message. Deleting...')
+        await query.answer('Uma mensagem antiga. Excluindo...')
         await query.message.delete()
         return
     if not text:
-        await query.answer('An error occurred. Try a second time, If it persists ask in support chat')
+        await query.answer('Um erro ocorreu. Tente uma segunda vez, se persistir')
         return
     await query.edit_message_text(text, reply_markup=markup)
     await query.answer()
