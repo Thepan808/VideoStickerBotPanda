@@ -1,3 +1,4 @@
+from pyrogram import emoji
 from database import database
 from pystark import Stark, Message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
@@ -16,13 +17,13 @@ async def user_settings(user_id):
     tick = ' ✔'
     cross = ' ✖️ '
     ask_emojis = "Personalizar emojis"
-    ask_emojis_msg = f"Defina como Verdadeiro se quiser que o bot solicite emojis que serão definidos para o adesivo de vídeo ao adicionar ao pacote. Se definido como Falso, todos os adesivos usarão emoji padrão, que é - ✨"
+    ask_emojis_msg = f"Defina como Verdadeiro se quiser que o bot solicite emojis que serão definidos para o adesivo de vídeo ao adicionar ao pacote. Se definido como Falso, todos os adesivos usarão emoji padrão, que é - {emoji.RED_HEART} ou ✨"
     get_webm = "Obter WEBM"
     get_webm_msg = f"Defina como Verdadeiro se quiser obter arquivos webm ao enviar qualquer adesivo de vídeo existente. Dessa forma, você pode adicionar adesivos de pacotes de outras pessoas usando @Stickers. Se for Falso, o bot irá ignorar o adesivo."
     kang_mode = "Modo Kang"
     kang_mode_msg = "Defina como Verdadeiro se quiser adicionar adesivos ao seu pacote apenas enviando um adesivo de vídeo de algum pacote existente. Dessa forma, você pode adicionar adesivos de pacotes de outras pessoas ao seu pacote. Se for Falso, o bot irá ."
     default_emojis = "Emojis padrão"
-    default_emojis_msg = f"Defina emojis padrão para serem usados ​​em seus adesivos. Se nada estiver definido, será usado com esse emoji ✨."
+    default_emojis_msg = f"Defina emojis padrão para serem usados ​​em seus adesivos. Se nada estiver definido, {emoji.RED_HEART} será usado com esse emoji ✨."
     text = f'**Configurações** \n\n'
     ask_emojis_db = data['ask_emojis']
     get_webm_db = data['get_webm']
