@@ -1,4 +1,3 @@
-
 from database import database
 from pystark import Stark, Message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
