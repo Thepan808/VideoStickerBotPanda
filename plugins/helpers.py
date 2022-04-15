@@ -24,10 +24,10 @@ class Helpers(BotAPI):
         ask_emojis_db = data['ask_emojis']
         if ask_emojis_db:
             ask_emojis += tick
-            text += f"**Peça emojis** : True"
+            text += f"**Peça emoji** : Verdadeiro"
         else:
             ask_emojis += cross
-            text += f"**Peça emojis** : False"
+            text += f"**Peça emoji** : Falso"
         markup = InlineKeyboardMarkup([
             [InlineKeyboardButton(ask_emojis, callback_data="emojis")]
         ])
@@ -43,13 +43,13 @@ class Helpers(BotAPI):
     async def ask_for_emojis(self):
         emojis_msg = await self.client.ask(
             self.user_id,
-            "Por favor, envie-me emojis para adicionar neste adesivo.",
+            "Por favor, envie-me emoji para adicionar neste adesivo.",
             filters=filters.text & filters.incoming
         )
         status = await emojis_msg.reply('Inspecionando a entrada...')
         emojis = await self.extract_emojis(emojis_msg)
         if not emojis:
-            await status.edit('Emojis inválidos. Processo cancelado.')
+            await status.edit('Emoji inválido. Processo cancelado.')
             return None
         await self.status.delete()
         self.status = status
