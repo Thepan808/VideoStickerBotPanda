@@ -16,7 +16,7 @@ async def user_settings(user_id):
         return False, False
     tick = ' ✔'
     cross = ' ✖️ '
-    ask_emojis = "Peça emojis"
+    ask_emojis = "Personalizar emojis"
     ask_emojis_msg = f"Defina como True se quiser que o bot solicite emojis que serão definidos para o adesivo de vídeo ao adicionar ao pacote. Se definido como Falso, todos os adesivos usarão emoji padrão, que é - {emoji.RED_HEART}"
     get_webm = "Obter WEBM"
     get_webm_msg = f"Defina como True se quiser obter arquivos webm ao enviar qualquer adesivo de vídeo existente. Dessa forma, você pode adicionar adesivos de pacotes de outras pessoas usando @Stickers. Se for Falso, o bot irá ignorar o adesivo."
