@@ -19,15 +19,15 @@ class Helpers(BotAPI):
             return False, False
         tick = '✔'
         cross = '✖️ '
-        ask_emojis = 'Ask for Emojis '
-        text = f'**Settings** \n\n'
+        ask_emojis = 'Peça emojis '
+        text = f'**Configurações** \n\n'
         ask_emojis_db = data['ask_emojis']
         if ask_emojis_db:
             ask_emojis += tick
-            text += f"**Ask For Emojis** : True"
+            text += f"**Peça emojis** : True"
         else:
             ask_emojis += cross
-            text += f"**Ask For Emojis** : False"
+            text += f"**Peça emojis** : False"
         markup = InlineKeyboardMarkup([
             [InlineKeyboardButton(ask_emojis, callback_data="emojis")]
         ])
@@ -43,13 +43,13 @@ class Helpers(BotAPI):
     async def ask_for_emojis(self):
         emojis_msg = await self.client.ask(
             self.user_id,
-            "Please send me emojis to add in this sticker.",
+            "Por favor, envie-me emojis para adicionar neste adesivo.",
             filters=filters.text & filters.incoming
         )
-        status = await emojis_msg.reply('Inspecting Input...')
+        status = await emojis_msg.reply('Inspecionando a entrada...')
         emojis = await self.extract_emojis(emojis_msg)
         if not emojis:
-            await status.edit('Invalid Emojis. Process Cancelled.')
+            await status.edit('Emojis inválidos. Processo cancelado.')
             return None
         await self.status.delete()
         self.status = status
@@ -91,7 +91,7 @@ class Helpers(BotAPI):
             return str(e)
         kib = info // 1024
         if kib > 256:
-            await self.status.edit('Resizing Video to fit Telegram Limits...')
+            await self.status.edit('Redimensionando o vídeo para caber nos limites do telegram...')
             new_output = self.output_file.replace('.webm', '2.webm')
             cmd = f"ffmpeg -i {self.output_file} -b:v 555k {new_output}"
             await self.subshell(cmd)
