@@ -23,9 +23,9 @@ Você receberá seu pacote assim que adicionar um adesivo. Envie mais gif/videos
 
 ABOUT = "👑 Converter gifs e vídeos em adesivos de vídeo 👑 by: Baianor."
 
-REPO = "ThePandaOfc"
+# REPO = "ThePandaOfc"
 
-STARKBOTS = True
+STARKBOTS = False
 
 CUSTOM_USERS_TABLE = True
 
